@@ -1,9 +1,12 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mens_store/core/utils/service_locator.dart';
+import 'package:mens_store/features/account/screens/address_screen_body.dart';
 import 'package:mens_store/features/auth/cubit/auth_cubit.dart';
 import 'package:mens_store/features/auth/login/presentation/views/login_screen.dart';
 import 'package:mens_store/features/auth/sign_up/presentation/views/sign_up_screen.dart';
+import 'package:mens_store/features/cart/presentation/cubit/cart_cubit.dart';
+import 'package:mens_store/features/cart/presentation/views/cart_screen.dart';
 import 'package:mens_store/features/home/cubits/categories/cubit.dart';
 import 'package:mens_store/features/home/cubits/products/cubit.dart';
 import 'package:mens_store/features/home/screens/home_screen.dart';
@@ -35,6 +38,9 @@ class RouteGenerator {
             BlocProvider<CategoriesCubit>(
               create: (context) => locator<CategoriesCubit>(),
             ),
+            BlocProvider<CartCubit>(
+              create: (context) => locator<CartCubit>(),
+            ),
           ],
           child: const HomeScreen(),
         ),
@@ -44,18 +50,23 @@ class RouteGenerator {
         name: AppRoutes.signUpScreen,
         builder: (context, state) => const SignUpScreen(),
       ),
-      // GoRoute(
-      //   path: AppRoutes.addressScreenBody,
-      //   name: AppRoutes.addressScreenBody,
-      //   builder: (context, state) => BlocProvider(
-      //     create: (context) => locator<AuthCubit>(),
-      //     child: const AddressScreenBody(),
-      //   ),
-      // ),
+      GoRoute(
+        path: AppRoutes.addressScreenBody,
+        name: AppRoutes.addressScreenBody,
+        builder: (context, state) => const AddressScreenBody(),
+      ),
       GoRoute(
         path: AppRoutes.splashScreen,
         name: AppRoutes.splashScreen,
         builder: (context, state) => const SplachScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.cartScreen,
+        name: AppRoutes.cartScreen,
+        builder: (context, state) => BlocProvider(
+          create: (context) => locator<CartCubit>(),
+          child: const CartScreen(),
+        ),
       ),
     ],
   );

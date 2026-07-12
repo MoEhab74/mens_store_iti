@@ -1,4 +1,4 @@
-import 'package:mens_store/features/home/models/product_model.dart';
+import 'package:mens_store/features/home/models/categories_model.dart';
 
 abstract class CategoriesState {}
 

@@ -20,7 +20,8 @@ class HomeRepo {
       return Left(msg);
     }
   }
-
+  // Get all categories
+  
   Future<Either<String, List<Category>>> getAllCategories() async {
     List<Category> categories;
     final response = await _dioHelper.getRequest(ApiEndPoints.getAllCategories);
